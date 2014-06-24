@@ -1,0 +1,5 @@
+C:\WebSites\getBlob\getBlob\bin\getBlob.dll
+C:\WebSites\getBlob\getBlob\bin\getBlob.pdb
+C:\WebSites\getBlob\getBlob\obj\Debug\getBlob.csprojResolveAssemblyReference.cache
+C:\WebSites\getBlob\getBlob\obj\Debug\getBlob.dll
+C:\WebSites\getBlob\getBlob\obj\Debug\getBlob.pdb
