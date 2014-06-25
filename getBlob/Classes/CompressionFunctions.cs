@@ -19,11 +19,13 @@ namespace getBlob.Classes
             }
         }
 
-        private static void unZip(FileInfo filetoExtract)
+        public static void unZip(FileInfo filetoExtract)
         {
-            //string zipPath = HttpContext.Current.Server.MapPath("/docs/" + filetoExtract.);
-
-
+            //string zipPath = HttpContext.Current.Server.MapPath("/docs/" + filetoExtract);
+            if (Directory.Exists("unzipped") != true)
+            {
+                Directory.CreateDirectory(HttpContext.Current.Server.MapPath("~/docs/unzipped"));
+            }
 
             string zipPath = filetoExtract.FullName;
             string extractpath = HttpContext.Current.Server.MapPath("/docs/unzipped/");

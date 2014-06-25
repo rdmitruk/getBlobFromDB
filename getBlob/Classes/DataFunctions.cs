@@ -37,7 +37,8 @@ namespace getBlob.Classes
             while (sqlDR.Read())
             {
                 sPath = HttpContext.Current.Server.MapPath("/docs/");
-                FS = new FileStream(HttpContext.Current.Server.MapPath("/docs/" + parent_refno + ".zip"), FileMode.OpenOrCreate, FileAccess.Write);
+                //FS = new FileStream(HttpContext.Current.Server.MapPath("/docs/" + parent_refno + "_" + DateTime.Today.ToShortDateString() + ".zip"), FileMode.OpenOrCreate, FileAccess.Write);
+                FS = new FileStream(HttpContext.Current.Server.MapPath("/docs/SFC_" + DateTime.Today.Year + DateTime.Today.Month + DateTime.Today.Day + ".zip"), FileMode.OpenOrCreate, FileAccess.Write);
 
                 BW = new BinaryWriter(FS);
 
@@ -63,7 +64,6 @@ namespace getBlob.Classes
 
             sqlDR.Close();
             CN.Close();
-
 
         }
     }
