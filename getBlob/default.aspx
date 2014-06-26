@@ -10,6 +10,10 @@
     <form id="form1" runat="server">
     <div>
         <asp:Button runat="server" ID="btnGetFile" Text="Get File" OnClick="btnGetFile_Click" />
+        <br />
+        <br />
+        <br />
+        <asp:Label runat="server" ID="lblTitle" />
     </div>
     </form>
 </body>

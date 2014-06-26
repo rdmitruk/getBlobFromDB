@@ -21,17 +21,20 @@ namespace getBlob.Classes
 
         public static void unZip(FileInfo filetoExtract)
         {
-            //string zipPath = HttpContext.Current.Server.MapPath("/docs/" + filetoExtract);
-            if (Directory.Exists("unzipped") != true)
+            if (Directory.Exists(HttpContext.Current.Server.MapPath(@"~/docs/")) == true)
             {
-                Directory.CreateDirectory(HttpContext.Current.Server.MapPath("~/docs/unzipped"));
+
+                Directory.Delete(HttpContext.Current.Server.MapPath(@"~/docs/unzipped/"), true);
+
+                Directory.CreateDirectory(HttpContext.Current.Server.MapPath("/docs/unzipped"));
+                    
+                Directory.SetCurrentDirectory(HttpContext.Current.Server.MapPath("/docs/unzipped"));
+
+                string zipPath = filetoExtract.FullName;
+                string extractpath = HttpContext.Current.Server.MapPath(@"/docs/unzipped/");
+
+                ZipFile.ExtractToDirectory(zipPath, extractpath);
             }
-
-            string zipPath = filetoExtract.FullName;
-            string extractpath = HttpContext.Current.Server.MapPath("/docs/unzipped/");
-
-            ZipFile.ExtractToDirectory(zipPath, extractpath);
-
         }
 
     }

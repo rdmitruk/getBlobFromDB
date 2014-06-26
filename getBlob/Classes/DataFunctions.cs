@@ -13,6 +13,7 @@ namespace getBlob.Classes
     public class DataFunctions
     {
 
+
         public void getBlob(int parent_refno)
         {
             string connStr = "Data Source=192.168.45.17;Initial Catalog=NLS;User Id=gvandell;Password=$#Escher1;";
@@ -24,21 +25,21 @@ namespace getBlob.Classes
             FileStream FS = null;
             BinaryWriter BW = null;
             long retVal;
-            int StartIndex;    
+            int StartIndex;   
+            string strSQL = "select VerificationDocsID, DocumentBIN from GlobalVerificationDocs where VerificationDocsID in (select top 1 VerificationDocsID from vw_doc_packets where parent_refno = " + parent_refno + " and grouping_name = '" + "Unsecured Doc Packet" + "' order by VerificationDocsID desc)";
         
             CN.ConnectionString = connStr;
             CN.Open();
 
             CM.Connection = CN;
             CM.CommandType = CommandType.Text;
-            CM.CommandText = "select VerificationDocsID, DocumentBIN from GlobalVerificationDocs where VerificationDocsID in (select top 1 VerificationDocsID from vw_doc_packets where parent_refno = " + parent_refno + " and grouping_name = '" + "Unsecured Doc Packet" + "' order by VerificationDocsID desc)";
+            CM.CommandText = strSQL;
 
             SqlDataReader sqlDR = CM.ExecuteReader(CommandBehavior.SequentialAccess);
             while (sqlDR.Read())
             {
-                sPath = HttpContext.Current.Server.MapPath("/docs/");
-                //FS = new FileStream(HttpContext.Current.Server.MapPath("/docs/" + parent_refno + "_" + DateTime.Today.ToShortDateString() + ".zip"), FileMode.OpenOrCreate, FileAccess.Write);
-                FS = new FileStream(HttpContext.Current.Server.MapPath("/docs/SFC_" + DateTime.Today.Year + DateTime.Today.Month + DateTime.Today.Day + ".zip"), FileMode.OpenOrCreate, FileAccess.Write);
+                sPath = HttpContext.Current.Server.MapPath(@"/docs/");
+                FS = new FileStream(HttpContext.Current.Server.MapPath(@"/docs/SFC_" + DateTime.Today.Year + DateTime.Today.Month + DateTime.Today.Day + ".zip"), FileMode.OpenOrCreate, FileAccess.Write);
 
                 BW = new BinaryWriter(FS);
 
